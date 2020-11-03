@@ -5,14 +5,14 @@ fn main() {
     let p = cmake::build("binaryen");
     std::fs::write("testing123", format!("{:?}", p)).unwrap();
     println!("{:?}", p);
-    println!("cargo:rustc-link-search={}/out/lib", p.to_str().unwrap());
+    println!("cargo:rustc-link-search={}/lib", p.to_str().unwrap());
 
     println!("cargo:rustc-link-lib=binaryen");
     // println!("cargo:rerun-if-changed=wrapper.h");
     let bindings = bindgen::Builder::default()
         // The input header we would like to generate
         // bindings for.
-        .header(format!("{}/out/include/binaryen-c.h", p.to_str().unwrap()))
+        .header(format!("{}/include/binaryen-c.h", p.to_str().unwrap()))
         // Tell cargo to invalidate the built crate whenever any of the
         // included header files changed.
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
