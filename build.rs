@@ -5,10 +5,10 @@ fn get_generator()->  &'static str {
     if cfg!(windows){
         return "Visual Studio 15 2017"
     }else if cfg!(mac){
-        return "Ninja"
+        return "ninja"
     }
     else {
-        "Ninja"
+        "ninja"
     }
 }
 fn main() {
