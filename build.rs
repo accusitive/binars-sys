@@ -8,21 +8,14 @@ fn main() {
     println!("cargo:rustc-link-search={}/lib", p.to_str().unwrap());
 
     println!("cargo:rustc-link-lib=binaryen");
-    // println!("cargo:rerun-if-changed=wrapper.h");
+    println!("cargo:rerun-if-changed={}", format!("{}/include/binaryen-c.h", p.to_str().unwrap()));
     let bindings = bindgen::Builder::default()
-        // The input header we would like to generate
-        // bindings for.
         .header(format!("{}/include/binaryen-c.h", p.to_str().unwrap()))
-        // Tell cargo to invalidate the built crate whenever any of the
-        // included header files changed.
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
-        // Finish the builder and generate the bindings.
         .generate()
-        // Unwrap the Result and panic on failure.
         .expect("Unable to generate bindings");
     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
     bindings
         .write_to_file(out_path.join("bindings.rs"))
         .expect("Couldn't write bindings!");
-    let bindings = std::fs::read(out_path.join("bindings.rs")).unwrap();
 }
