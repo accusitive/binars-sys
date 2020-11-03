@@ -2,6 +2,11 @@ extern crate bindgen;
 use std::env;
 use std::path::PathBuf;
 fn main () {
+    let p = cmake::build("binaryen");
+    std::fs::write("testing123", format!("{:?}", p)).unwrap();
+    println!("{:?}", p);
+    println!("cargo:rustc-link-search={}/out/lib", p.to_str().unwrap());
+
      println!("cargo:rustc-link-lib=binaryen");
  println!("cargo:rerun-if-changed=wrapper.h");
  let bindings = bindgen::Builder::default()

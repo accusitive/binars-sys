@@ -34,6 +34,7 @@ name = "binars-sys"
 version = "0.1.0"
 dependencies = [
  "bindgen",
+ "cmake",
 ]
 
 [[package]]
@@ -111,6 +112,15 @@ dependencies = [
  "textwrap",
  "unicode-width",
  "vec_map",
+]
+
+[[package]]
+name = "cmake"
+version = "0.1.44"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0e56268c17a6248366d66d4a47a3381369d068cce8409bb1716ed77ea32163bb"
+dependencies = [
+ "cc",
 ]
 
 [[package]]
