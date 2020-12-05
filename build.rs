@@ -9,8 +9,8 @@ fn main() {
         .build()
     };
 
-    println!("cargo:rustc-link-search=native={}/lib", p.display());
-    println!("cargo:rustc-link-lib=native=binaryen");
+    println!("cargo:rustc-link-search={}/lib", p.display());
+    println!("cargo:rustc-link-lib=binaryen");
     std::fs::write("test", p.display().to_string()).unwrap();
 
    // println!("cargo:rerun-if-changed={}", format!("{}/include/binaryen-c.h", p.to_str().unwrap()));
