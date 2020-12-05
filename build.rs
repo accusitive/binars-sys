@@ -8,8 +8,9 @@ fn main() {
         cmake::Config::new("binaryen")
         .build()
     };
-    println!("cargo:rustc-link-search=dylib={}/lib", p.display());
-    println!("cargo:rustc-link-lib=dylib=binaryen");
+
+    println!("cargo:rustc-link-search=native={}/lib", p.display());
+    println!("cargo:rustc-link-lib=native=binaryen");
     std::fs::write("test", p.display().to_string()).unwrap();
 
    // println!("cargo:rerun-if-changed={}", format!("{}/include/binaryen-c.h", p.to_str().unwrap()));
